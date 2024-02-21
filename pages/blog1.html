@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=<1.0>">
+	<title>Making a Custom Kindle Dictionary</title>
+	<link rel="stylesheet" href="../css/styles.css" />
+</head>
+
+<body>
+	<a href="../main.html">Go Back</a>
+	<h1>Making a Custom Kindle Dictionary</h1>
+	<p>Making a Custom Kindle Dictionary isn&#8217;t very hard to do but while researching how to and doing a custom one
+		I found a lot of small problems and incomplete or outdated info, so here is how I did it and the problems
+		I&#8217;ve found while doing a Tolkien/English Dictionary. </p>
+
+
+	<p>In this blog, I&#8217;m gonna explain to you how to construct the dictionary vocabulary, some problems I came
+		across, how to do some formatting if you wanna be fancy about it and how to add and use the dictionary in your
+		Kindle. We are going to make use of the Command Prompt, download a GitHub and run a Python script, if you
+		aren&#8217;t familiar with them don&#8217;t worry since you only need to install some stuff and write very basic
+		commands and I&#8217;ll explain them on the go. <br><br>This was made with the Kindle Firmware 5.14.3.0.1,
+		Kindle Previewer 3.66.0, Tab2Opf Feb 3 2015, and Python 3.9.1, so if you find any differences comment and
+		I&#8217;ll try to add them to this guide but since most of the info I&#8217;ve found online is pretty similar
+		you shouldn&#8217;t have any problems</p>
+
+
+
+	<h2>Why make a Custom Dictionary?</h2>
+	<p>While I&#8217;m sure there are many applications for custom dictionaries, the one I found is a Fantasy Dictionary
+		since many Fantasy books involve creatures, plants, places, people with many names, races, etc. To the point
+		that it becomes a bit difficult to keep up, especially if you take long breaks between reading the series or
+		book so I wanted to make a Tolkien universe dictionary for the fun of it and to help me remember who are the
+		characters. Also since I&#8217;m going through Computer Engineering school I&#8217;m sure I already make custom
+		books to help me study and I can see having a custom dictionary for computer terms being very useful.</p>
+
+
+
+	<h2>Gathering the words for the dictionary </h2>
+
+
+
+	<p>The simplest way to construct our dictionary will be using a tool called <a
+			href="https://www.python.org/downloads/">Tab2Opf</a>.</p>
+
+
+
+	<p>This tool only requires one thing, a file with the word, followed by a Tab and then the definition. So you should
+		have basically 2 columns, one for the words and then the definition. Note that the words being in alphabetic
+		order is not important since Tab2Opf will organize them for us but if you are planning to use a lot of words it
+		can be good to keep them organized yourself in case you wanna add more words later or be sure you aren&#8217;t
+		missing any words.</p>
+
+
+
+	<p>You can go about it in many ways. You could parse fan websites for the terms if you aren&#8217;t afraid to work a
+		bit with HTML files, transcribe or copy from websites or books, or write your own definitions in Notepad or any
+		text editor. </p>
+
+
+
+	<p>Personally, I copied the definitions from David Day&#8217;s <em>A Dictionary for Tolkien</em> I got from Amazon
+		and added the definitions from <em>The Online Plain Text English Dictionary</em> to not lose the English
+		dictionary part since I&#8217;m not a native speaker and may want to look up some English words.</p>
+
+
+
+	<p>At the end you should have something similar to this:</p>
+
+
+	<div>
+		<figure><a href="https://eriml.files.wordpress.com/2022/07/image-1.png"><img src="https://eriml.files.wordpress.com/2022/07/image-1.png?w=673" alt=""/></a></figure>
+	</div>
+
+
+	<h3>Things to be careful with</h3>
+
+
+
+	<p>Make sure you always have 2 columns, I had some problems where one line had no word related to it. If you wanna
+		use multiple lines for one word write it all on the same line but simply put an &lt;br&gt; HTML tag between the
+		two lines, don&#8217;t use many lines for a single word. It may be hard to read but there&#8217;s no way around
+		it.</p>
+
+
+
+	<h3>Formatting</h3>
+
+
+
+	<p>If you are going to use multiple definitions or lines for a word use the &lt;br&gt; tag like I said earlier but
+		if you wanna be next level with it and you want to add some formatting like italic or bold to add notes like a
+		real dictionary you can add italic by using the tag &lt;em&gt; and bold with &lt;strong&gt;, if you aren&#8217;t
+		familiar with HTML tags you can do a quick google for it but it&#8217;s as simple as writing
+		&lt;em&gt;word&lt;/em&gt; or &lt;strong&gt;word&lt;/strong&gt; and your word or lines will be in Italic or bold.
+	</p>
+
+
+
+	<p>If you are familiar with HTML and know the other ways to format bold and italic(&lt;b&gt; and &lt;i&gt;), do not
+		use those since the dictionary won&#8217;t recognize them and will cause problems later on.</p>
+
+
+
+	<p>Those are the formatting tags I think you&#8217;ll realistically need for a dictionary and the only ones
+		I&#8217;ve tested, but you are free to experiment but know that testing a dictionary can be time-consuming since
+		making the Kindle realize you made changes is a bit awkward and slow (I&#8217;ll explain it more later on).</p>
+
+
+
+	<p></p>
+
+
+
+	<h2>Getting Tab2Opf ready</h2>
+
+
+
+	<p><strong>Tab2Opf</strong> is a Python script that will handle all the formatting for you and will create an OPF
+		file so you can create the MOBI dictionary so you can use it on your Kindle. Python is a programming language
+		that has become very common and it&#8217;s pretty easy to use. You only need to install it by going to this
+		page: </p>
+
+
+
+	<p><a href="https://www.python.org/downloads/">https://www.python.org/downloads/</a></p>
+
+
+
+	<p>Download it and install it, it may ask you to restart your computer but should be ready to go after that. To make
+		sure Python is installed correctly you can open a Command Prompt and type <strong><em>py &#8211;version</em>
+		</strong>and it should print <em><strong>Python 3.9.1</strong></em> or whatever version you have installed. If
+		it doesn&#8217;t, you can re-install or google how to fix it, it&#8217;s a simple fix but does require some
+		explanation and I don&#8217;t want to add any more bloat to this post.</p>
+
+
+
+	<p>Next, you&#8217;re gonna need to get Tab2Opf, which you can find on this Github page: <a
+			href="https://github.com/apeyser/tab2opf">https://github.com/apeyser/tab2opf</a></p>
+
+
+
+	<p>To download it simply press the Green button that says &#8220;Code&#8221; and use the last option &#8220;Download
+		ZIP&#8221;. Extract that folder into whatever folder you want and you&#8217;re good to go.</p>
+
+
+
+	<h2>Creating the OPF Dictionary</h2>
+
+
+
+	<p>Now that you have your text file with the definitions and Python installed you need to open the Command Prompt on
+		Windows. Copy the text file you created for the dictionary into the same folder you extracted Tab2Opf to so you
+		have something like this:</p>
+
+
+	<div>
+		<figure><a href="https://eriml.files.wordpress.com/2022/07/image.png"><img src="https://eriml.files.wordpress.com/2022/07/image.png?w=634" alt=""/></a></figure>
+	</div>
+
+
+	<p>Next, you&#8217;ll need to navigate to the folder you extracted the Tab2Opf folder by typing &#8220;cd
+		C:\Users\user\Documents\tab2opf-master&#8221;, of course replacing the folder location with whatever you chose.
+		Once you&#8217;re in the correct folder you&#8217;ll need to type <em><strong>py tab2opf.py &#8220;Tolkien
+				Dictionary.txt&#8221;</strong></em> by changing the name of your dictionary file. Note that the name you
+		gave your file will be the name it shows on your Kindle and be sure to use quotations if your file has any
+		spaces, otherwise they are not necessary. Next press Enter and you should see something like this:</p>
+
+
+	<div>
+		<figure><a href="https://eriml.files.wordpress.com/2022/07/image-2.png"><img src="https://eriml.files.wordpress.com/2022/07/image-2.png?w=702" alt=""/></a></figure>
+	</div>
+
+
+	<p><strong><em>If you don&#8217;t get this messaged and see error codes check the sections for problems I
+				encountered and how I fixed them</em> </strong><em><strong>at the end of the post.</strong> </em></p>
+
+
+
+	<p>You should see an OPF file in the same folder now next to multiple HTML files. The amount varies on how many
+		words you added to the dictionary.</p>
+
+
+	<div>
+		<figure><a href="https://eriml.files.wordpress.com/2022/07/image-3.png"><img src="https://eriml.files.wordpress.com/2022/07/image-3.png?w=642" alt=""/></a></figure>
+	</div>
+
+
+	<h2>Creating the Kindle Dictionary</h2>
+
+
+
+	<p>Now that you have the OPF file you are one step away from putting the dictionary on your Kindle. To convert the
+		dictionary into a compatible format for Kindle you&#8217;ll need a software called <strong>Kindle
+			Previewer</strong> that is meant to show authors and publishers how their eBooks will look like in the
+		Kindle (the download link is lower on the page).</p>
+
+
+
+	<p><a
+			href="https://www.amazon.com/Kindle-Previewer/b?ie=UTF8&amp;node=21381691011">https://www.amazon.com/Kindle-Previewer/b?ie=UTF8&amp;node=21381691011</a>
+	</p>
+
+
+
+	<p>Install the program and open it and you should see something like this:</p>
+
+
+
+	<figure><a href="https://eriml.files.wordpress.com/2022/07/image-4.png"><img src="https://eriml.files.wordpress.com/2022/07/image-4.png?w=1024" alt=""/></a></figure>
+
+
+
+	<p>Now simply open the folder where you have the OPF file and drag it onto the program or do click on <em>File &gt;
+			Open Book</em> and look for your OPF file. It will take a bit of time depending on the size of your
+		dictionary so don&#8217;t get frustrated and will show you your dictionary like this:</p>
+
+
+
+	<figure><a href="https://eriml.files.wordpress.com/2022/07/image-6.png"><img src="https://eriml.files.wordpress.com/2022/07/image-6.png?w=1024" alt=""/></a></figure>
+
+
+
+	<p><strong><em>If you get any errors and it doesn&#8217;t show you your dictionary check the section at the
+				end.</em></strong><br><br>Now simply go to <em>File</em> &gt; <em>Export</em> and be sure to select MOBI
+		format on the dropdown and name the file whatever you want (this will not be the name the Kindle shows so if you
+		have multiple versions of the dictionary you can add a number or date to it) like this:</p>
+
+
+	<div>
+		<figure><a href="https://eriml.files.wordpress.com/2022/07/image-7.png"><img 
+					src="https://eriml.files.wordpress.com/2022/07/image-7.png?w=465" alt=""
+					/></a></figure>
+	</div>
+
+
+	<p>Save the file in any location you want but remember it so later you can copy the dictionary on your Kindle, and
+		you should be good to go. You created your Kindle dictionary.</p>
+
+
+
+	<h2>Using the dictionary on your Kindle</h2>
+
+
+
+	<p>The next step is the most simple. Connect your Kindle via USB to your computer and you should see a new drive on
+		your File Explorer called Kindle. Open it and navigate to <em>documents</em> &gt; <em>dictionaries</em> and copy
+		your MOBI dictionary into that folder. If the dictionaries folder doesn&#8217;t exist I think it means you
+		haven&#8217;t downloaded any additional dictionaries so just create it and put your dictionary in there.</p>
+
+
+
+	<p>Disconnect your Kindle from your computer and you&#8217;re good to go, you only need to select in your book your
+		new dictionary.</p>
+
+
+
+	<h2>Making changes, testing, or adding to your dictionary</h2>
+
+
+
+	<p>If you want to add more words to your dictionary you have 2 options, adding it to your text file and making the
+		whole process again (the one I think is easier and probably faster for most users). The other option is
+		modifying the HTML file by copying the format of each word and adding more there but that will require you to
+		know the structure and probably will take longer if you do it with multiple words.</p>
+
+
+
+	<p>Once you have your new version you can simply replace the MOBI file in your Kindle and sometimes it will refresh
+		with no problems. Other times you&#8217;ll find that is working with the old version and you will need to do one
+		of two options, you can restart your Kindle but that&#8217;s a bit slower and if you are trying new stuff with
+		formatting or having problems with some characters and so on that time will add up. The quicker option is
+		plugging in your Kindle, deleting the dictionary, disconnecting the Kindle, try to use the dictionary so the
+		Kindle realizes it&#8217;s no longer there, re-connect your Kindle, and copy it again. The second option is more
+		steps and a bit tedious but is way faster than restarting the Kindle.</p>
+
+
+
+	<h2>Problems I&#8217;ve encountered</h2>
+
+
+
+	<p>Next, I will list all the problems I found and how I solved them. For some of them I found partial fixes and
+		clues on various forums but I wanna compile and add to them here.</p>
+
+
+
+	<h3>Problems when creating the OPF file</h3>
+
+
+
+	<p>I came across this error while creating an English dictionary for testing</p>
+
+
+
+	<figure>
+		<a href="https://eriml.files.wordpress.com/2022/07/image-5.png">
+		<img src="https://eriml.files.wordpress.com/2022/07/image-5.png?w=708" alt=""/>
+		</a>
+	</figure>
+
+
+
+	<p>Turns out it was a poorly written line with no word for that definition and I solved it by adding the word, or
+		you can simply delete the line, a similar error may be possible if you are using weird careful characters so
+		keep an eye out for them.</p>
+
+
+
+	<h3>Problems when creating the MOBI file</h3>
+
+
+
+	<p>The thing I had most of the problems with was when I was creating the MOBI file. When I dragged the OPF file into
+		Kindle Previewer I got the error &#8220;<em>Kindle Previewer could not preview this book due to a conversion
+			failure. Please refer to the Conversion Log for more details&#8221;.</em></p>
+
+
+	<div>
+		<figure><a href="https://eriml.files.wordpress.com/2022/07/image-8.png"><img src="https://eriml.files.wordpress.com/2022/07/image-8.png?w=500" alt=""/></a></figure>
+	</div>
+
+	<p>If you click on the Conversion Log and get the error <em>E21016: Source file is not valid UTF8.</em> This happens
+		because the formatting is incorrect and you need to convert it. There&#8217;s a simple fix. You need to download
+		<em><a href="https://notepad-plus-plus.org/downloads/">NotePad++</a></em> and open the HTML file listed on the
+		error on NotePad++.</p>
+
+
+
+	<p>Click <em>Encoding</em> on the menu inside NotePad++. There are two possible solutions. If you see <em>ANSI
+		</em>marked (or anything different than UTF-8) with a circle on the left in the menu click on the option
+		<em>Convert to UTF-8</em> and save the file. The other situation I encountered was that the file had
+		<em>UTF-8</em> with a circle on the left, I fix that by first clicking on <em>ANSI</em> so the circle is now
+		there and then click on <em>Convert to UTF-8</em> and save the file. </p>
+
+
+
+	<h3>Problems with the dictionary on Kindle</h3>
+
+
+
+	<p>While the Previewer may show you correct formatting there are some tags that work in the previewer but
+		don&#8217;t work in the Kindle dictionary is already in use since the Previewer is meant for Books, not
+		dictionaries. Two of the tags that cause issues are &lt;i&gt; and &lt;b&gt; like I mentioned earlier. This may
+		cause some words to show multiple descriptions or incomplete paragraphs since the Kindle gets confused with the
+		formatting. In my opinion, this is lazy programming by Amazon but luckily you can just use the alternative
+		&lt;em&gt; and &lt;strong&gt; tags. If you encounter it with any other HTML tags try to find alternatives before
+		you give up on that formatting you are looking for.</p>
+
+</body>
+
+</html>

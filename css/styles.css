@@ -1,20 +1,60 @@
+body{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: #181a1b;
+    color: white;
+    padding:10%;
+    text-align: justify;
+}
+
+h1, h2, h3{
+    color: #cee781;
+}
+
+a{
+    color: #9bb6ab;
+}
+
+img:not(.logo){
+    max-width: 80%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.linkcontent {
+    max-height: 100px;
+}
+
+.linkcontainer{
+    max-height: 100px;
+    overflow:hidden;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.bandcamp{
+    margin: 0 auto;
+    width: 20%;
+    height: 23em;
+    display: block;
+}
 .container{
     width: 100%;
     flex-wrap: wrap;
     display:block;
 }
 
-/* .break{
-    flex-basis: 100%;
-    height: 0;
-} */
-body{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+.pageheader{
+    display: grid;
+    grid-template-columns: 1fr 10fr;
 }
 
 
-.pagetitle{
-    color: yellow;
+.logo{
+    height: 100px;
+    border-radius: 50%;
+    margin: 10px;
 }
 
 .links{
@@ -23,26 +63,37 @@ body{
 
 .about{
     display: inline-block;
+    width: 100%;
+    margin: 5%;
 }
 
 .aboutme{
     display: wrap;
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
 .subscribe{
     display: wrap;
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
 .sections {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
-/* Dimensiones para celular */
+
+.section{
+    padding-top: 0%;
+    padding-left: 10%;
+    padding-bottom: 10%;
+    padding-right: 10%;
+}
+
+/* Dimensiones para celular en Portrait o Landscape*/
 @media ((max-width:450px) and (max-height:1000px)) 
     or ((max-width:1000px) and (max-height:450px)){
-        .pagetitle{
-            color: red;
-        }
         
         .links{
             display: block;
@@ -69,10 +120,6 @@ body{
 
 @media ((max-width:1200px) and (max-height:1400px) and (min-width:450px) and (min-height:800px))
     or ((max-width:1400px) and (max-height:1200px) and (min-width:800px) and (min-height:450px)){
-        .pagetitle{
-            color: blue;
-        }
-        
         .links{
             display: block;
         }
