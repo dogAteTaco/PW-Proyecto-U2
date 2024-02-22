@@ -1,23 +1,17 @@
 # Proyecto de Programación Web Unidad 2
-### García Galaz Rodolfo
+- García Galaz Rodolfo
+El Blog esta divido en 6 secciones principales: Titulo, Links a Árticulos, seccion de About Me, formulario para suscribirte, adicionales y el pie de página.
+- Titulo. Contiene un logo y el título del blog.
+- Links de Articulos. Contiene 3 ligas a articulos del blog con un breve preview del mismo.
+- About Me. Da informacin general sobre el blog.
+- Formulario para subscribirte. Contiene un input para introducir tu correo electronico.
+- Adicionales. Contiene un link a una pagina de Wordpress con Ebooks de letras de albums, un reproductor embedido de SoundCloud y una playlist de Spotify embedida.
+- Pie de Pagina. Contiene un mensaje de copyright y autor de la pagina.
 
+La pagina esta diseñada para cambiar su estructura de acuerdo a 3 rangos de dimensiones de la ventana del navegador por el cual se accesa. Se tienen 3 categorias: movil, escritorio y tableta. Tambien se esta configurado para mantener la estructura en caso de que el dispositivo este en modo Portrait o Landscape.
 
- 
-Realizar el siguiente proyecto, y entregar tus resultados a través de este enlace
+Existe un archivo principal llamado _main.html_, el cual contiene la estructura de la pagina principal. Ademas, tenemos 3 HTML adicionales contenidos en la carpeta _pages_ llamados _blog1.html_,_blog2.html_ y _blog3.html_ que contienen paginas simples con articulos escritos y algunos elementos embedidos.
 
-Debe guardar el proyecto en github, incluir archivo README.md donde explique el funcionamiento de su proyecto, al inicio de este archivo debe incluir su nombre, fecha de creación y breve descripción del proyecto
-Subir a moodle la liga
-Recuerde entrar a enviar para ver las indicaciones
-Considerando las imágenes anexas construya un blog responsivo el cual se ajuste a cada uno de los dispositivos. Las ligas principales deben enlazar a 3 páginas  simples (una para cada liga)
-Cada estudiante hará la presentación de su blog ante la clase
-Para ver tu página web en diferentes tamaños de pantalla y verificar su diseño responsivo sigue los siguientes pasos.
-
-Abre el browser de tu elección y carga tu página web.
-Haz clic derecho en cualquier parte de la página y selecciona "Inspeccionar" o presiona Ctrl + Shift + I (Windows/Linux) o Cmd + Option + I (Mac) para abrir las DevTools.
-En la parte superior de las DevTools, verás un icono de un teléfono y una tableta. Haz clic en él o presiona Ctrl + Shift + M (Windows/Linux) o Cmd + Option + M (Mac) para activar el modo de dispositivo.
-Selecciona el dispositivo deseado en el menú desplegable de la barra de herramientas. Esto cambiará el tamaño de la ventana del navegador para simular el dispositivo seleccionado.
-Además, puedes hacer clic y arrastrar los bordes de la ventana para ajustar manualmente el tamaño y la orientación.
-Recarga la página si es necesario para aplicar los cambios.
-Para salir del modo de dispositivo, haz clic nuevamente en el icono del teléfono y la tableta o presiona Ctrl + Shift + M (Windows/Linux) o Cmd + Option + M (Mac) para desactivarlo.
+Los estilos de los cuatro archivos HTML estan contenidos dentro de la carpeta _css_ en el archivo _styles.css_ de tal manera que todas las paginas tienen un estilo coherente.
 
 
