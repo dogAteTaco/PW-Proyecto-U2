@@ -2,7 +2,7 @@ body{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     background-color: #181a1b;
     color: white;
-    padding:10%;
+    padding:5%;
     text-align: justify;
 }
 
@@ -14,6 +14,10 @@ a{
     color: #9bb6ab;
 }
 
+footer{
+    width: 100%;
+    text-align: center;
+}
 img:not(.logo){
     max-width: 80%;
     padding-left: 10%;
